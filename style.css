@@ -321,4 +321,67 @@ footer {
 }
 .footer-creditos { margin-top: 5px; font-size: 0.85rem; }
 .footer-creditos a { text-decoration: none; color: #5D9CB3; font-weight: 600; transition: color 0.3s; }
+
 .footer-creditos a:hover { color: var(--color-rosa); }
+/* --- MENÚ RESPONSIVE (CELULAR) --- */
+
+/* Estilo del botón hamburguesa (oculto en PC, visible en celus) */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #5D9CB3; /* Color de las rayitas */
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+/* Cuando la pantalla es menor a 768px (Tablets y Celulares) */
+@media (max-width: 768px) {
+    /* Mostramos el botón hamburguesa */
+    .hamburger {
+        display: flex; 
+        z-index: 200; /* Para que quede arriba de todo */
+    }
+
+    /* Transformamos el menú en una lista vertical oculta */
+    nav ul {
+        position: fixed;
+        top: 70px; /* Altura del header */
+        left: -100%; /* Lo escondemos a la izquierda */
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: white;
+        flex-direction: column; /* Botones uno abajo del otro */
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 40px;
+        transition: 0.4s ease; /* Efecto suave al salir */
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 100;
+    }
+
+    /* Clase mágica que activa el menú cuando hacemos clic */
+    nav ul.activo {
+        left: 0; /* Lo traemos a la vista */
+    }
+
+    /* Hacemos los botones más grandes para el dedo */
+    nav ul li {
+        margin: 15px 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    nav a {
+        font-size: 1.2rem; /* Letra más grande */
+        display: block;
+        padding: 15px;
+    }
+}
