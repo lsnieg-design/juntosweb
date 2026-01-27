@@ -10,23 +10,31 @@
 <body>
 
        <header>
-        <a href="index.html" class="logo-container">
-            <img src="img/logo.png" alt="Logo Juntos a la Par" class="logo-img-header">
-            <div class="logo-texto">
-                <h1>Juntos a la Par</h1>
-                <span>Escuela de Educación Especial</span>
-            </div>
-        </a>
-      <nav>
-    <ul>
-        <li><a href="index.html" class="activo">Inicio</a></li> <li><a href="nosotros.html">Nosotros</a></li>
-        <li><a href="servicios.html">Servicios</a></li>
-        <li><a href="sede.html">Sede</a></li>
-        <li><a href="admisiones.html">Admisiones</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-    </ul>
-</nav>
-    </header>
+    <a href="index.html" class="logo-container">
+        <img src="img/logo.png" alt="Logo Juntos a la Par" class="logo-img-header">
+        <div class="logo-texto">
+            <h1>Juntos a la Par</h1>
+            <span>Escuela de Educación Especial</span>
+        </div>
+    </a>
+    
+    <nav>
+        <ul id="menu-lista">
+            <li><a href="index.html"class="activo">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="sede.html">Sede</a></li>
+            <li><a href="admisiones.html">Admisiones</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+    
+    <div class="hamburger" id="menu-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+</header>
 
     <div class="hero">
         <h2>Bienvenidos a Juntos a la Par</h2>
@@ -122,6 +130,16 @@
         <a href="https://lulisnieg3.wixsite.com/nomade" target="_blank">Creado por Nómade</a>
     </div>
 </footer>
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuLista = document.getElementById('menu-lista');
 
+    menuToggle.addEventListener('click', () => {
+        menuLista.classList.toggle('activo');
+    });
+</script>
+
+</body> </html>
 </body>
+
 </html>
