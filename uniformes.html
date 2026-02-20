@@ -27,7 +27,6 @@
                 <li><a href="/servicios">Servicios</a></li>
                 <li><a href="/sede">Sede</a></li>
                 <li><a href="/admisiones">Admisiones</a></li>
-             
                 <li><a href="/contacto">Contacto</a></li>
             </ul>
         </nav>
@@ -53,7 +52,7 @@
             <div class="texto-centrado">
                 <span class="material-icons icono-gigante">palette</span>
                 <h3>El valor de lo hecho a mano</h3>
-                <p>Cada remera y uniforme que usan nuestros estudiantes es el resultado del trabajo, aprendizaje y dedicación de los jóvenes que conforman el <strong>Taller Laboral de Sublimación</strong>. Al adquirir el uniforme acá, no solo te llevás una prenda de excelente calidad, sino que estás apoyando directamente el desarrollo de habilidades sociolaborales de nuestros chicos y chicas.</p>
+                <p>Cada remera y uniforme que usan lxs estudiantes es el resultado del trabajo, aprendizaje y dedicación de quienes conforman el <strong>Taller Laboral de Sublimación</strong>. Al adquirir el uniforme acá, no solo te llevás una prenda de excelente calidad, sino que estás apoyando directamente el desarrollo de habilidades sociolaborales de lxs chicxs.</p>
             </div>
             
             <h4 class="titulo-galeria">Nuestros Modelos</h4>
@@ -140,8 +139,8 @@
                         <label>Forma de pago</label>
                         <select class="form-style" id="metodo-pago" required>
                             <option value="" disabled selected>¿Cómo preferís abonar?</option>
-                            <option value="Efectivo">Efectivo (en Administración)</option>
-                            <option value="Transferencia">Transferencia Bancaria</option>
+                            <option value="Efectivo">Efectivo (Requiere transferencia del 20% como seña)</option>
+                            <option value="Transferencia">Transferencia Bancaria (Totalidad)</option>
                         </select>
                     </div>
 
@@ -154,18 +153,21 @@
                 <h3>¡Recibimos tu solicitud!</h3>
                 
                 <div class="caja-datos-pago">
-                    <p>Para que el Taller Laboral comience con la confección de tu pedido, es necesario realizar el abono del mismo.</p>
+                    <p>Para que el Taller Laboral comience con la confección, es necesario realizar el pago. <strong>Si elegiste abonar en efectivo, recordá que debés transferir una seña del 20%</strong> y abonar el resto al retirar el uniforme en la escuela.</p>
                     <div class="datos-alias">
                         <strong>Valor aproximado:</strong> Consultar según talle<br>
                         <strong>Alias:</strong> JUNTOS.A.LA.PAR<br>
                         <strong>Titular:</strong> Escuela Juntos a la Par
                     </div>
-                    <p class="demora-texto"><span class="material-icons">schedule</span> La demora de confección es de <strong>10 a 20 días</strong> desde el momento del pago.</p>
+                    <p class="demora-texto"><span class="material-icons">schedule</span> La demora de confección es de <strong>10 a 20 días</strong> desde la confirmación del pago.</p>
                 </div>
 
-                <a href="https://wa.me/5491100000000" target="_blank" class="btn-whatsapp-comprobante">
-                    <span class="material-icons">send</span> Enviar Comprobante por WhatsApp
+                <a href="mailto:taller@taller?subject=Comprobante de Pago - Uniformes Juntos a la Par" class="btn-email-comprobante">
+                    <span class="material-icons">email</span> Enviar Comprobante por Mail
                 </a>
+                <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                    *Al tocar el botón se abrirá tu correo. Recordá <strong>adjuntar la foto</strong> del comprobante de transferencia.
+                </p>
             </div>
         </div>
     </section>
@@ -178,6 +180,22 @@
         const menuLista = document.getElementById('menu-lista');
         menuToggle.addEventListener('click', () => {
             menuLista.classList.toggle('activo');
+        });
+    </script>
+    <script>
+        const formulario = document.getElementById('form-uniformes');
+        const cajaFormulario = document.getElementById('caja-formulario');
+        const mensajeExito = document.getElementById('mensaje-exito');
+
+        formulario.addEventListener('submit', function(event) {
+            // Prevenimos que la página se recargue por ahora
+            event.preventDefault(); 
+            
+            // Ocultamos el form y mostramos el mensaje con el Alias
+            cajaFormulario.style.display = 'none';
+            mensajeExito.style.display = 'block';
+            
+            // Más adelante acá pondremos el código para enviar los datos a Google Sheets
         });
     </script>
 </body>
