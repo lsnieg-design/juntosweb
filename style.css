@@ -385,3 +385,46 @@ footer {
         padding: 15px;
     }
 }
+/* --- BOTÓN FLOTANTE UNIFORMES (IZQUIERDA) --- */
+.btn-flotante-uniformes {
+    position: fixed; /* Esto hace que flote y acompañe el scroll */
+    bottom: 25px;    /* Distancia desde abajo */
+    left: 25px;      /* Distancia desde la izquierda */
+    background-color: #5D9CB3; /* El celeste característico de tu paleta */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px; /* Forma de pastilla redondita */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre el ícono y el texto */
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Asegura que esté por encima de todo el resto */
+    transition: all 0.3s ease;
+}
+
+.btn-flotante-uniformes:hover {
+    transform: translateY(-5px); /* Se levanta un poquito al pasar el mouse */
+    background-color: #4a7e91; /* Se oscurece apenitas */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajuste para que en celulares no ocupe tanto espacio */
+@media (max-width: 768px) {
+    .btn-flotante-uniformes {
+        bottom: 20px;
+        left: 20px;
+        padding: 10px 16px;
+    }
+    
+    .texto-btn-uniformes {
+        font-size: 0.9rem;
+    }
+    
+    .btn-flotante-uniformes .material-icons {
+        font-size: 1.2rem;
+    }
+}
+
+
