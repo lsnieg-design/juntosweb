@@ -619,23 +619,78 @@ footer {
     font-weight: 600;
 }
 
-.btn-whatsapp-comprobante {
+/* --- BOTÓN DE EMAIL COMPROBANTE (DISEÑO PREMIUM) --- */
+.btn-email-comprobante {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    background-color: #25D366; /* Verde WhatsApp */
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #5D9CB3, #3B7A8F); /* Degradado celeste a azul profundo */
     color: white;
-    padding: 15px 30px;
+    padding: 16px 35px;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-top: 10px;
+    font-weight: 800; /* Letra más gordita y legible */
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden; /* Necesario para el efecto de brillo */
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Borde sutil blanco */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transición con un "rebote" suave */
+    
+    /* Animación de latido en la sombra para que llame la atención */
+    animation: latido-boton 2.5s infinite; 
 }
 
+/* El ícono un poquito más grande */
+.btn-email-comprobante .material-icons {
+    font-size: 1.8rem; 
+}
+
+/* El efecto del "rayo de luz" o brillo */
+.btn-email-comprobante::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg); /* Inclinamos el rayo de luz */
+    transition: all 0.7s ease;
+}
+
+/* Lo que pasa cuando le pasás el mouse por arriba */
+.btn-email-comprobante:hover {
+    transform: translateY(-5px) scale(1.03); /* Se levanta y se agranda un 3% */
+    background: linear-gradient(135deg, #4a7e91, #2c5c6d); /* Se oscurece un poco */
+    box-shadow: 0 12px 30px rgba(93, 156, 179, 0.6);
+    animation: none; /* Frenamos el latido si ya tiene el mouse encima */
+}
+
+/* Hacemos que la luz atraviese el botón de izquierda a derecha */
+.btn-email-comprobante:hover::before {
+    left: 200%;
+}
+
+/* La clave de la animación del latido */
+@keyframes latido-boton {
+    0% { box-shadow: 0 8px 25px rgba(93, 156, 179, 0.3); }
+    50% { box-shadow: 0 8px 25px rgba(93, 156, 179, 0.7), 0 0 15px rgba(93, 156, 179, 0.4); }
+    100% { box-shadow: 0 8px 25px rgba(93, 156, 179, 0.3); }
+}
+
+/* Ajustes para celulares (Incluye lo que ya tenías de los formularios) */
 @media (max-width: 768px) {
     .fila-form { flex-direction: column; gap: 0; }
     .contenedor-formulario { padding: 25px 15px; }
+    
+    .btn-email-comprobante {
+        width: 100%; /* Botón ancho en celu */
+        font-size: 1.1rem;
+        padding: 15px 20px;
+    }
 }
 
 
