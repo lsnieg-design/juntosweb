@@ -77,8 +77,95 @@
                 <p>Completá el siguiente formulario para encargar los uniformes. Nos pondremos en contacto con vos a la brevedad para confirmar el pago y la entrega.</p>
             </div>
 
-            <div class="contenedor-iframe-nativo">
-                <iframe src="https://docs.google.com/forms/d/e/TU_FORMULARIO_ACA/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Cargando formulario...</iframe>
+            <div class="contenedor-formulario" id="caja-formulario">
+                <form id="form-uniformes">
+                    
+                    <div class="grupo-form">
+                        <label>Nombre y apellido del/la estudiante</label>
+                        <input type="text" class="form-style" required placeholder="Ej: García, Juan">
+                    </div>
+
+                    <div class="fila-form">
+                        <div class="grupo-form">
+                            <label>Ciclo al que concurre</label>
+                            <select class="form-style" required>
+                                <option value="" disabled selected>Seleccionar...</option>
+                                <option value="Inicial">Inicial</option>
+                                <option value="1 Ciclo">1° Ciclo</option>
+                                <option value="2 Ciclo">2° Ciclo</option>
+                                <option value="CFI">CFI</option>
+                                <option value="Fines">Fines</option>
+                            </select>
+                        </div>
+                        <div class="grupo-form">
+                            <label>Docente a cargo</label>
+                            <input type="text" class="form-style" required placeholder="Nombre del/la docente">
+                        </div>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label>Teléfono de contacto</label>
+                        <input type="tel" class="form-style" required placeholder="Ej: 11 1234 5678">
+                    </div>
+
+                    <div class="fila-form">
+                        <div class="grupo-form">
+                            <label>Talle (Mirá la guía de imágenes arriba)</label>
+                            <select class="form-style" required>
+                                <option value="" disabled selected>Elegir talle...</option>
+                                <optgroup label="Línea Niñxs">
+                                    <option value="Niños 4">Talle 4</option>
+                                    <option value="Niños 6">Talle 6</option>
+                                    <option value="Niños 8">Talle 8</option>
+                                    <option value="Niños 10">Talle 10</option>
+                                    <option value="Niños 12">Talle 12</option>
+                                    <option value="Niños 14">Talle 14</option>
+                                </optgroup>
+                                <optgroup label="Línea Adultxs">
+                                    <option value="Adultos S">Talle S</option>
+                                    <option value="Adultos M">Talle M</option>
+                                    <option value="Adultos L">Talle L</option>
+                                    <option value="Adultos XL">Talle XL</option>
+                                    <option value="Adultos XXL">Talle XXL</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="grupo-form">
+                            <label>Cantidad</label>
+                            <input type="number" class="form-style" required min="1" value="1">
+                        </div>
+                    </div>
+
+                    <div class="grupo-form">
+                        <label>Forma de pago</label>
+                        <select class="form-style" id="metodo-pago" required>
+                            <option value="" disabled selected>¿Cómo preferís abonar?</option>
+                            <option value="Efectivo">Efectivo (en Administración)</option>
+                            <option value="Transferencia">Transferencia Bancaria</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-enviar-pedido">Confirmar Pedido</button>
+                </form>
+            </div>
+
+            <div id="mensaje-exito" class="mensaje-oculto">
+                <span class="material-icons icono-exito">task_alt</span>
+                <h3>¡Recibimos tu solicitud!</h3>
+                
+                <div class="caja-datos-pago">
+                    <p>Para que el Taller Laboral comience con la confección de tu pedido, es necesario realizar el abono del mismo.</p>
+                    <div class="datos-alias">
+                        <strong>Valor aproximado:</strong> Consultar según talle<br>
+                        <strong>Alias:</strong> JUNTOS.A.LA.PAR<br>
+                        <strong>Titular:</strong> Escuela Juntos a la Par
+                    </div>
+                    <p class="demora-texto"><span class="material-icons">schedule</span> La demora de confección es de <strong>10 a 20 días</strong> desde el momento del pago.</p>
+                </div>
+
+                <a href="https://wa.me/5491100000000" target="_blank" class="btn-whatsapp-comprobante">
+                    <span class="material-icons">send</span> Enviar Comprobante por WhatsApp
+                </a>
             </div>
         </div>
     </section>
