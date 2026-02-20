@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uniformes - Juntos a la Par</title>
+    <meta name="description" content="Uniformes escolares realizados por el Taller Laboral de Sublimación de la Escuela Juntos a la Par.">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <a href="/" class="logo-container">
+            <img src="img/logo.png" alt="Logo Juntos a la Par" class="logo-img-header">
+            <div class="logo-texto">
+                <h1>Juntos a la Par</h1>
+                <span>Escuela de Educación Especial</span>
+            </div>
+        </a>
+        <nav>
+            <ul id="menu-lista">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/nosotros">Nosotros</a></li>
+                <li><a href="/servicios">Servicios</a></li>
+                <li><a href="/sede">Sede</a></li>
+                <li><a href="/admisiones">Admisiones</a></li>
+                <li><a href="/uniformes" class="activo">Uniformes</a></li> 
+                <li><a href="/contacto">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger" id="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+
+    <div class="hero-inner hero-uniformes">
+        <h2>Uniformes Escolares</h2>
+        <p>Hechos con orgullo por nuestro Taller Laboral</p>
+        <div class="custom-shape-divider-bottom-1">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </div>
+
+    <section class="seccion-taller">
+        <div class="contenedor">
+            <div class="texto-centrado">
+                <span class="material-icons icono-gigante">palette</span>
+                <h3>El valor de lo hecho a mano</h3>
+                <p>Cada remera y uniforme que usan nuestros estudiantes es el resultado del trabajo, aprendizaje y dedicación de los jóvenes que conforman el <strong>Taller Laboral de Sublimación</strong>. Al adquirir el uniforme acá, no solo te llevás una prenda de excelente calidad, sino que estás apoyando directamente el desarrollo de habilidades sociolaborales de nuestros chicos y chicas.</p>
+            </div>
+            
+            <h4 class="titulo-galeria">Nuestros Modelos</h4>
+            <div class="grilla-fotos-2">
+                <div class="foto-tarjeta"><img src="img/remeras1.jpg" alt="Modelo de remera 1"></div>
+                <div class="foto-tarjeta"><img src="img/remeras2.jpg" alt="Modelo de remera 2"></div>
+            </div>
+
+            <h4 class="titulo-galeria">Guía de Talles</h4>
+            <div class="grilla-fotos-2">
+                <div class="foto-tarjeta"><img src="img/talle1.jpg" alt="Guía de talle 1"></div>
+                <div class="foto-tarjeta"><img src="img/talle2.jpg" alt="Guía de talle 2"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="seccion-formulario-pedido">
+        <div class="contenedor">
+            <div class="texto-centrado">
+                <h3>Hacé tu pedido online</h3>
+                <p>Completá el siguiente formulario para encargar los uniformes. Nos pondremos en contacto con vos a la brevedad para confirmar el pago y la entrega.</p>
+            </div>
+
+            <div class="contenedor-iframe-nativo">
+                <iframe src="https://docs.google.com/forms/d/e/TU_FORMULARIO_ACA/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Cargando formulario...</iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuLista = document.getElementById('menu-lista');
+        menuToggle.addEventListener('click', () => {
+            menuLista.classList.toggle('activo');
+        });
+    </script>
+</body>
+</html>
