@@ -516,4 +516,126 @@ footer {
         box-shadow: none; /* En celular la sombra molesta un poco */
     }
 }
+/* --- FORMULARIO DE PEDIDOS --- */
+.contenedor-formulario {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.grupo-form {
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.grupo-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+}
+
+.fila-form {
+    display: flex;
+    gap: 20px;
+}
+
+.form-style {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+.form-style:focus {
+    outline: none;
+    border-color: #5D9CB3;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(93, 156, 179, 0.1);
+}
+
+.btn-enviar-pedido {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    background-color: #5D9CB3;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* --- MENSAJE DE ÉXITO --- */
+.mensaje-oculto {
+    display: none; /* Se oculta hasta que envían el formulario */
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.icono-exito {
+    font-size: 5rem;
+    color: #A3E4D7; /* Verde agua */
+    margin-bottom: 10px;
+}
+
+.caja-datos-pago {
+    background-color: #f8fbfa;
+    border: 2px dashed #A3E4D7;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.datos-alias {
+    font-size: 1.2rem;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.demora-texto {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #e67e22; /* Naranja para destacar el tiempo */
+    font-weight: 600;
+}
+
+.btn-whatsapp-comprobante {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #25D366; /* Verde WhatsApp */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .fila-form { flex-direction: column; gap: 0; }
+    .contenedor-formulario { padding: 25px 15px; }
+}
+
 
