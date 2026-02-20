@@ -176,7 +176,7 @@
     <footer>
         </footer>
 
-    <script>
+   <script>
         const menuToggle = document.getElementById('menu-toggle');
         const menuLista = document.getElementById('menu-lista');
         menuToggle.addEventListener('click', () => {
@@ -195,9 +195,17 @@
         const btnEnviarMail = document.getElementById('btn-enviar-mail');
         const textoIntro = document.getElementById('texto-intro-form'); 
 
+        // ESTE ES EL LINK MAGICO QUE COPIASTE EN EL PASO 3:
+        const urlGoogleScript = "https://script.google.com/macros/s/AKfycby75GEjvGT8wiehrXxFGgcVMCuGpqsh83z4YMVx_RwEjBaNPXGWFUDHUl6Fvu1rHaIf0w/exec";
+
         formulario.addEventListener('submit', function(event) {
             event.preventDefault(); 
             
+            // Cambiamos el texto del botón temporalmente para dar feedback
+            const btnSubmit = document.querySelector('.btn-enviar-pedido');
+            btnSubmit.innerText = "Procesando pedido...";
+            btnSubmit.style.opacity = "0.7";
+
             const nombre = document.getElementById('pedido-nombre').value;
             const ciclo = document.getElementById('pedido-ciclo').value;
             const docente = document.getElementById('pedido-docente').value;
@@ -206,7 +214,25 @@
             const cantidad = document.getElementById('pedido-cantidad').value;
             const pago = document.getElementById('metodo-pago').value;
 
-            const cuerpoMail = `Hola equipo del Taller de Sublimación,
+            // 1. Armamos el paquete de datos para mandar al Excel
+            const datosParaExcel = {
+                nombre: nombre,
+                ciclo: ciclo,
+                docente: docente,
+                telefono: telefono,
+                talle: talle,
+                cantidad: cantidad,
+                pago: pago
+            };
+
+            // 2. Enviamos los datos al Excel en silencio (fetch)
+            fetch(urlGoogleScript, {
+                method: "POST",
+                body: JSON.stringify(datosParaExcel)
+            })
+            .then(respuesta => {
+                // Una vez que el Excel avisó que guardó todo, armamos el mail
+                const cuerpoMail = `Hola equipo del Taller de Sublimación,
 
 Adjunto el comprobante de pago correspondiente a este nuevo pedido:
 
@@ -221,18 +247,22 @@ Adjunto el comprobante de pago correspondiente a este nuevo pedido:
 - Forma de Pago elegida: ${pago}
 -----------------------------------
 
-*Foto del comprobante adjunta a este correo.*
 
 ¡Muchas gracias!`;
 
-            // Actualizado al nuevo correo
-            const mailToLink = `mailto:cfitalleresjuntos@gmail.com?subject=Nuevo Pedido y Comprobante - ${nombre}&body=${encodeURIComponent(cuerpoMail)}`;
-            
-            btnEnviarMail.href = mailToLink;
+                const mailToLink = `mailto:cfitalleresjuntos@gmail.com?subject=Nuevo Pedido y Comprobante - ${nombre}&body=${encodeURIComponent(cuerpoMail)}`;
+                btnEnviarMail.href = mailToLink;
 
-            if (textoIntro) textoIntro.style.display = 'none';
-            cajaFormulario.style.display = 'none';
-            mensajeExito.style.display = 'block';
+                // Ocultamos formulario y mostramos éxito
+                if (textoIntro) textoIntro.style.display = 'none';
+                cajaFormulario.style.display = 'none';
+                mensajeExito.style.display = 'block';
+            })
+            .catch(error => {
+                alert("Hubo un error al procesar el pedido. Por favor, intentá nuevamente.");
+                btnSubmit.innerText = "Confirmar Pedido";
+                btnSubmit.style.opacity = "1";
+            });
         });
     </script>
 </body>
