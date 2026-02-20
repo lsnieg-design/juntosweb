@@ -427,4 +427,93 @@ footer {
     }
 }
 
+/* --- PÁGINA UNIFORMES --- */
+
+/* Color del encabezado (Hero) */
+.hero-uniformes {
+    background: linear-gradient(135deg, #FFB74D, #FFCC80); /* Naranja/Amarillo cálido */
+}
+
+/* Espaciados y textos de la sección */
+.seccion-taller, .seccion-formulario-pedido {
+    padding: 60px 20px;
+}
+
+.seccion-formulario-pedido {
+    background-color: #fcfcfc; /* Un fondo apenitas gris para despegarlo */
+}
+
+.texto-centrado {
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    text-align: center;
+}
+
+.icono-gigante {
+    font-size: 4rem;
+    color: #5D9CB3;
+    margin-bottom: 15px;
+}
+
+.titulo-galeria {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    margin: 50px 0 20px 0;
+}
+
+/* Grilla para que las fotos queden emparejadas */
+.grilla-fotos-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.foto-tarjeta {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.foto-tarjeta:hover {
+    transform: scale(1.02); /* Zoom suave al pasar el mouse */
+}
+
+.foto-tarjeta img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* EL TRUCO DEL FORMULARIO DE GOOGLE */
+/* Lo metemos en una caja blanca con sombra y le cortamos los bordes feos */
+.contenedor-iframe-nativo {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: transparent;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Sombra elegante */
+}
+
+.contenedor-iframe-nativo iframe {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: white; /* Fuerza fondo blanco por si Google tarda en cargar */
+}
+
+/* Ajustes para celulares */
+@media (max-width: 768px) {
+    .grilla-fotos-2 {
+        grid-template-columns: 1fr; /* En celular las fotos van una abajo de la otra */
+    }
+    .contenedor-iframe-nativo {
+        box-shadow: none; /* En celular la sombra molesta un poco */
+    }
+}
 
