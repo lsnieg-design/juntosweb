@@ -71,7 +71,7 @@
 
     <section class="seccion-formulario-pedido">
         <div class="contenedor">
-            <div class="texto-centrado">
+            <div class="texto-centrado" id="texto-intro-form">
                 <h3>Hacé tu pedido online</h3>
                 <p>Completá el siguiente formulario para encargar los uniformes. Nos pondremos en contacto con vos a la brevedad para confirmar el pago y la entrega.</p>
             </div>
@@ -81,13 +81,13 @@
                     
                     <div class="grupo-form">
                         <label>Nombre y apellido del/la estudiante</label>
-                        <input type="text" class="form-style" required placeholder="Ej: García, Juan">
+                        <input type="text" id="pedido-nombre" class="form-style" required placeholder="Ej: García, Juan">
                     </div>
 
                     <div class="fila-form">
                         <div class="grupo-form">
                             <label>Ciclo al que concurre</label>
-                            <select class="form-style" required>
+                            <select id="pedido-ciclo" class="form-style" required>
                                 <option value="" disabled selected>Seleccionar...</option>
                                 <option value="Inicial">Inicial</option>
                                 <option value="1 Ciclo">1° Ciclo</option>
@@ -98,21 +98,21 @@
                         </div>
                         <div class="grupo-form">
                             <label>Docente a cargo</label>
-                            <input type="text" class="form-style" required placeholder="Nombre del/la docente">
+                            <input type="text" id="pedido-docente" class="form-style" required placeholder="Nombre del/la docente">
                         </div>
                     </div>
 
                     <div class="grupo-form">
                         <label>Teléfono de contacto</label>
-                        <input type="tel" class="form-style" required placeholder="Ej: 11 1234 5678">
+                        <input type="tel" id="pedido-telefono" class="form-style" required placeholder="Ej: 11 1234 5678">
                     </div>
 
                     <div class="fila-form">
                         <div class="grupo-form">
                             <label>Talle (Mirá la guía de imágenes arriba)</label>
-                            <select class="form-style" required>
+                            <select id="pedido-talle" class="form-style" required>
                                 <option value="" disabled selected>Elegir talle...</option>
-                                <optgroup label="Línea Niñxs">
+                                <optgroup label="Línea Niñxs ($18.000)">
                                     <option value="Niños 4">Talle 4</option>
                                     <option value="Niños 6">Talle 6</option>
                                     <option value="Niños 8">Talle 8</option>
@@ -120,7 +120,7 @@
                                     <option value="Niños 12">Talle 12</option>
                                     <option value="Niños 14">Talle 14</option>
                                 </optgroup>
-                                <optgroup label="Línea Adultxs">
+                                <optgroup label="Línea Adultxs ($20.000)">
                                     <option value="Adultos S">Talle S</option>
                                     <option value="Adultos M">Talle M</option>
                                     <option value="Adultos L">Talle L</option>
@@ -131,13 +131,13 @@
                         </div>
                         <div class="grupo-form">
                             <label>Cantidad</label>
-                            <input type="number" class="form-style" required min="1" value="1">
+                            <input type="number" id="pedido-cantidad" class="form-style" required min="1" value="1">
                         </div>
                     </div>
 
                     <div class="grupo-form">
                         <label>Forma de pago</label>
-                        <select class="form-style" id="metodo-pago" required>
+                        <select id="metodo-pago" class="form-style" required>
                             <option value="" disabled selected>¿Cómo preferís abonar?</option>
                             <option value="Efectivo">Efectivo (Requiere transferencia del 20% como seña)</option>
                             <option value="Transferencia">Transferencia Bancaria (Totalidad)</option>
@@ -155,18 +155,19 @@
                 <div class="caja-datos-pago">
                     <p>Para que el Taller Laboral comience con la confección, es necesario realizar el pago. <strong>Si elegiste abonar en efectivo, recordá que debés transferir una seña del 20%</strong> y abonar el resto al retirar el uniforme en la escuela.</p>
                     <div class="datos-alias">
-                        <strong>Valor aproximado:</strong> Consultar según talle<br>
-                        <strong>Alias:</strong> JUNTOS.A.LA.PAR<br>
+                        <strong>Valores:</strong> Talles chicos $18.000 | Talles grandes $20.000<br>
+                        <strong>Alias:</strong> talleresjuntos 
+                        <button type="button" onclick="copiarAlias()" style="background:none; border:none; color:#5D9CB3; cursor:pointer; text-decoration:underline; font-weight:bold; font-size:0.9rem; padding-left:10px;">(Copiar Alias)</button><br>
                         <strong>Titular:</strong> Escuela Juntos a la Par
                     </div>
                     <p class="demora-texto"><span class="material-icons">schedule</span> La demora de confección es de <strong>10 a 20 días</strong> desde la confirmación del pago.</p>
                 </div>
 
-                <a href="mailto:taller@taller?subject=Comprobante de Pago - Uniformes Juntos a la Par" class="btn-email-comprobante">
+                <a href="#" id="btn-enviar-mail" class="btn-email-comprobante">
                     <span class="material-icons">email</span> Enviar Comprobante por Mail
                 </a>
                 <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
-                    *Al tocar el botón se abrirá tu correo. Recordá <strong>adjuntar la foto</strong> del comprobante de transferencia.
+                    *Al tocar el botón se abrirá tu correo <strong>ya escrito con tu pedido</strong>. Solo recordá <strong>adjuntar la foto</strong> del comprobante de transferencia.
                 </p>
             </div>
         </div>
@@ -181,21 +182,57 @@
         menuToggle.addEventListener('click', () => {
             menuLista.classList.toggle('activo');
         });
-    </script>
-    <script>
+
+        function copiarAlias() {
+            navigator.clipboard.writeText("talleresjuntos").then(() => {
+                alert("¡Alias copiado! Ya podés pegarlo en tu aplicación del banco o Mercado Pago.");
+            });
+        }
+
         const formulario = document.getElementById('form-uniformes');
         const cajaFormulario = document.getElementById('caja-formulario');
         const mensajeExito = document.getElementById('mensaje-exito');
+        const btnEnviarMail = document.getElementById('btn-enviar-mail');
+        const textoIntro = document.getElementById('texto-intro-form'); 
 
         formulario.addEventListener('submit', function(event) {
-            // Prevenimos que la página se recargue por ahora
             event.preventDefault(); 
             
-            // Ocultamos el form y mostramos el mensaje con el Alias
+            const nombre = document.getElementById('pedido-nombre').value;
+            const ciclo = document.getElementById('pedido-ciclo').value;
+            const docente = document.getElementById('pedido-docente').value;
+            const telefono = document.getElementById('pedido-telefono').value;
+            const talle = document.getElementById('pedido-talle').value;
+            const cantidad = document.getElementById('pedido-cantidad').value;
+            const pago = document.getElementById('metodo-pago').value;
+
+            const cuerpoMail = `Hola equipo del Taller de Sublimación,
+
+Adjunto el comprobante de pago correspondiente a este nuevo pedido:
+
+📋 DATOS DEL PEDIDO:
+-----------------------------------
+- Estudiante: ${nombre}
+- Ciclo: ${ciclo}
+- Docente: ${docente}
+- Teléfono: ${telefono}
+- Talle: ${talle}
+- Cantidad: ${cantidad}
+- Forma de Pago elegida: ${pago}
+-----------------------------------
+
+*Foto del comprobante adjunta a este correo.*
+
+¡Muchas gracias!`;
+
+            // Actualizado al nuevo correo
+            const mailToLink = `mailto:cfitalleresjuntos@gmail.com?subject=Nuevo Pedido y Comprobante - ${nombre}&body=${encodeURIComponent(cuerpoMail)}`;
+            
+            btnEnviarMail.href = mailToLink;
+
+            if (textoIntro) textoIntro.style.display = 'none';
             cajaFormulario.style.display = 'none';
             mensajeExito.style.display = 'block';
-            
-            // Más adelante acá pondremos el código para enviar los datos a Google Sheets
         });
     </script>
 </body>
