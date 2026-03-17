@@ -9,6 +9,34 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Agregamos los estilos para el nuevo cartel de alerta acá mismo -->
+    <style>
+        .alerta-talles-form {
+            background-color: #fff4e5;
+            border-left: 5px solid #ff9800;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .alerta-talles-form .material-icons {
+            color: #ff9800;
+            font-size: 1.8rem;
+        }
+        .alerta-talles-form p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #b05c00;
+            line-height: 1.4;
+        }
+        .alerta-talles-form strong {
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
 
@@ -77,6 +105,13 @@
             </div>
 
             <div class="contenedor-formulario" id="caja-formulario">
+                
+                <!-- NUEVO: Cartel de advertencia de talles -->
+                <div class="alerta-talles-form">
+                    <span class="material-icons">warning</span>
+                    <p><strong>IMPORTANTE: No se hacen cambios de talle.</strong><br> Por las dudas, recomendamos siempre pedir un talle más y medir bien la ropa de lxs chicxs usando nuestra guía de talles (imágenes de arriba).</p>
+                </div>
+
                 <form id="form-uniformes">
                     
                     <div class="grupo-form">
@@ -143,9 +178,9 @@
                     <div class="grupo-form">
                         <label>Forma de pago</label>
                         <select id="metodo-pago" class="form-style" required>
-                            <option value="" disabled selected>¿Cómo preferís abonar?</option>
-                            <option value="Efectivo">Efectivo (Requiere transferencia del 20% como seña)</option>
-                            <option value="Transferencia">Transferencia Bancaria (Totalidad)</option>
+                            <!-- MODIFICADO: Solo opción de transferencia 100% -->
+                            <option value="" disabled selected>Seleccionar forma de pago...</option>
+                            <option value="Transferencia">Transferencia Bancaria (Abono del 100%)</option>
                         </select>
                     </div>
 
@@ -158,14 +193,15 @@
                 <h3>¡Recibimos tu solicitud!</h3>
                 
                 <div class="caja-datos-pago">
-                    <p>Para que el Taller Laboral comience con la confección, es necesario realizar el pago. <strong>Si elegiste abonar en efectivo, recordá que debés transferir una seña del 20%</strong> y abonar el resto al retirar el uniforme en la escuela.</p>
+                    <!-- MODIFICADO: Texto de éxito sin mencionar señas ni efectivo -->
+                    <p>Para que el Taller Laboral comience con la confección, es necesario realizar <strong>el abono del 100% mediante transferencia bancaria</strong>. Una vez que recibamos tu comprobante, el pedido ingresa a producción.</p>
                     <div class="datos-alias">
                         <strong>Valores:</strong> Talles chicos $18.000 | Talles grandes $20.000<br>
                         <strong>Alias:</strong> talleresjuntos 
                         <button type="button" onclick="copiarAlias()" style="background:none; border:none; color:#5D9CB3; cursor:pointer; text-decoration:underline; font-weight:bold; font-size:0.9rem; padding-left:10px;">(Copiar Alias)</button><br>
                         <strong>Titular:</strong> Escuela Juntos a la Par
                     </div>
-                    <p class="demora-texto"><span class="material-icons">schedule</span> La demora de confección es de <strong>10 a 20 días</strong> desde la confirmación del pago.</p>
+                    <p class="demora-texto"><span class="material-icons">schedule</span> La demora de confección es de <strong>15 a 20 días</strong> desde la recepción del comprobante de pago.</p>
                 </div>
 
                 <a href="#" id="btn-enviar-mail" class="btn-email-comprobante">
@@ -179,7 +215,7 @@
     </section>
 
     <footer>
-        </footer>
+    </footer>
 
    <script>
         const menuToggle = document.getElementById('menu-toggle');
@@ -200,7 +236,7 @@
         const btnEnviarMail = document.getElementById('btn-enviar-mail');
         const textoIntro = document.getElementById('texto-intro-form'); 
 
-        // ESTE ES EL LINK MAGICO QUE COPIASTE EN EL PASO 3:
+        // ESTE ES EL LINK MAGICO DE GOOGLE SCRIPT
         const urlGoogleScript = "https://script.google.com/macros/s/AKfycbzy_MB-Le8rAbXx3VICnHqH1hsTAi64WgeVLWn9Tc3NPWuF1egYZR4tG0qsxpSrYo--hA/exec";
 
         formulario.addEventListener('submit', function(event) {
@@ -215,7 +251,7 @@
             const ciclo = document.getElementById('pedido-ciclo').value;
             const docente = document.getElementById('pedido-docente').value;
             const telefono = document.getElementById('pedido-telefono').value;
-            const email = document.getElementById('pedido-email').value; // <-- NUEVO
+            const email = document.getElementById('pedido-email').value; 
             const talle = document.getElementById('pedido-talle').value;
             const cantidad = document.getElementById('pedido-cantidad').value;
             const pago = document.getElementById('metodo-pago').value;
@@ -226,7 +262,7 @@
                 ciclo: ciclo,
                 docente: docente,
                 telefono: telefono,
-                email: email, // <-- NUEVO
+                email: email, 
                 talle: talle,
                 cantidad: cantidad,
                 pago: pago
