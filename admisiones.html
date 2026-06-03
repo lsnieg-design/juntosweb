@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admisiones 2026 - Juntos a la Par</title>
+    <title>Admisiones 2027 - Juntos a la Par</title>
     <link rel="icon" href="img/logo.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -33,7 +33,7 @@
         .btn-abrir-form {
             display: inline-block;
             padding: 15px 30px;
-            background-color: var(--color-azul);
+            background-color: var(--color-azul, #5D9CB3);
             color: white;
             text-decoration: none;
             border-radius: 50px;
@@ -43,43 +43,102 @@
         }
         .btn-abrir-form:hover { background-color: #8bbdd6; transform: scale(1.05); }
 
-        .borde-sede { border-color: var(--color-rosa); }
-        .borde-inclusion { border-color: var(--color-amarillo); }
+        .borde-sede { border-color: var(--color-rosa, #f48fb1); }
+        .borde-inclusion { border-color: var(--color-amarillo, #ffb300); }
 
         @media (max-width: 768px) { .grid-admision { grid-template-columns: 1fr; } }
+
+        /* --- NUEVO: Estilos para el bloqueo y el cartel --- */
+        #zona-admisiones {
+            position: relative;
+            padding-bottom: 50px;
+        }
+        
+        /* Clase que se aplica por JS para desenfocar */
+        .estado-bloqueado main {
+            filter: blur(8px);
+            pointer-events: none; /* Evita que hagan clic en los botones de atrás */
+            user-select: none;
+            opacity: 0.6;
+            transition: filter 0.5s ease;
+        }
+
+        /* Cartel flotante */
+        .cartel-proximamente {
+            display: none; /* Oculto por defecto, se activa por JS */
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            border-top: 8px solid var(--color-azul, #5D9CB3);
+            z-index: 10;
+            width: 90%;
+            max-width: 500px;
+            animation: aparecer 0.5s ease-out forwards;
+        }
+
+        .cartel-proximamente .material-icons {
+            font-size: 4.5rem;
+            color: var(--color-azul, #5D9CB3);
+            margin-bottom: 15px;
+        }
+
+        .cartel-proximamente h3 {
+            color: #444;
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .cartel-proximamente p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: translate(-50%, -40%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
     </style>
 </head>
 <body>
 
-      <header>
-    <a href="index.html" class="logo-container">
-        <img src="img/logo.png" alt="Logo Juntos a la Par" class="logo-img-header">
-        <div class="logo-texto">
-            <h1>Juntos a la Par</h1>
-            <span>Escuela de Educación Especial</span>
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="img/logo.png" alt="Logo Juntos a la Par" class="logo-img-header">
+            <div class="logo-texto">
+                <h1>Juntos a la Par</h1>
+                <span>Escuela de Educación Especial</span>
+            </div>
+        </a>
+        
+        <nav>
+            <ul id="menu-lista">
+                <li><a href="index">Inicio</a></li>
+                <li><a href="nosotros">Nosotros</a></li>
+                <li><a href="servicios">Servicios</a></li>
+                <li><a href="sede">Sede</a></li>
+                <li><a href="admisiones" class="activo">Admisiones</a></li>
+                <li><a href="contacto">Contacto</a></li>
+            </ul>
+        </nav>
+        
+        <div class="hamburger" id="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
-    </a>
-    
-    <nav>
-        <ul id="menu-lista">
-            <li><a href="index">Inicio</a></li>
-            <li><a href="nosotros">Nosotros</a></li>
-            <li><a href="servicios">Servicios</a></li>
-            <li><a href="sede">Sede</a></li>
-            <li><a href="admisiones"class="activo">Admisiones</a></li>
-            <li><a href="contacto">Contacto</a></li>
-        </ul>
-    </nav>
-    
-    <div class="hamburger" id="menu-toggle">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </div>
-</header>
+    </header>
 
     <div class="hero-inner" style="background: linear-gradient(135deg, #F4C2C2, #eeb0b0);">
-        <h2>Admisiones 2026</h2>
+        <h2>Admisiones 2027</h2>
         <p>Iniciá el proceso de inscripción</p>
         <div class="custom-shape-divider-bottom-1">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -88,37 +147,45 @@
         </div>
     </div>
 
-    <main>
-        <p class="subtitulo-seccion">Seleccioná la modalidad para completar el formulario correspondiente.</p>
+    <div id="zona-admisiones">
+        <main>
+            <p class="subtitulo-seccion">Seleccioná la modalidad para completar el formulario correspondiente.</p>
 
-        <div class="grid-admision">
-            <div class="card-admision borde-sede">
-                <span class="material-icons" style="font-size: 4rem; color: var(--color-rosa);">school</span>
-                <h3>Admisión SEDE</h3>
-                <p>Para inscripciones a Nivel Inicial, Primario y CFI en nuestra institución.</p>
-                <div class="btn-abrir-form" onclick="abrirModal('modalSede')">Completar Formulario</div>
-            </div>
+            <div class="grid-admision">
+                <div class="card-admision borde-sede">
+                    <span class="material-icons" style="font-size: 4rem; color: var(--color-rosa);">school</span>
+                    <h3>Admisión SEDE</h3>
+                    <p>Para inscripciones a Nivel Inicial, Primario y CFI en nuestra institución.</p>
+                    <div class="btn-abrir-form" onclick="abrirModal('modalSede')">Completar Formulario</div>
+                </div>
 
-            <div class="card-admision borde-inclusion">
-                <span class="material-icons" style="font-size: 4rem; color: var(--color-amarillo);">groups</span>
-                <h3>Admisión INCLUSIÓN</h3>
-                <p>Para acompañamiento en Escuelas de Nivel (Inclusión Educativa).</p>
-                <div class="btn-abrir-form" onclick="abrirModal('modalInclusion')">Completar Formulario</div>
+                <div class="card-admision borde-inclusion">
+                    <span class="material-icons" style="font-size: 4rem; color: var(--color-amarillo);">groups</span>
+                    <h3>Admisión INCLUSIÓN</h3>
+                    <p>Para acompañamiento en Escuelas de Nivel (Inclusión Educativa).</p>
+                    <div class="btn-abrir-form" onclick="abrirModal('modalInclusion')">Completar Formulario</div>
+                </div>
             </div>
+        </main>
+
+        <div id="cartel-proximamente" class="cartel-proximamente">
+            <span class="material-icons">event_available</span>
+            <h3>¡Preparando Ciclo 2027!</h3>
+            <p>Las admisiones se abrirán formalmente el <strong>lunes 3 de agosto</strong> por este mismo medio.<br><br>¡Te esperamos!</p>
         </div>
-    </main>
+    </div>
 
     <div id="modalSede" class="modal-overlay">
         <div class="modal-contenido">
             <span class="cerrar-modal" onclick="cerrarModal('modalSede')">&times;</span>
-            <iframe class="iframe-container" src="https://docs.google.com/forms/d/e/1FAIpQLSdl8ovUE-dqh77HlB_yPuUBE2BPqcUks_4c6uuK98f8MN0ztQ/viewform?embedded=true">Cargando…</iframe>
+            <iframe class="iframe-container" src="https://docs.google.com/forms/d/e/1FAIpQLSdMBHY4jkX_SBK3OBPlDUh4bd1qs0fRVFYR6REOC7GPWRz1-w/viewform?usp=header">Cargando…</iframe>
         </div>
     </div>
 
     <div id="modalInclusion" class="modal-overlay">
         <div class="modal-contenido">
             <span class="cerrar-modal" onclick="cerrarModal('modalInclusion')">&times;</span>
-            <iframe class="iframe-container" src="https://docs.google.com/forms/d/e/1FAIpQLScASCCdtsHdtinxKluHUAis06FYvACSCIF-iQbH3Ivu44VbtQ/viewform?embedded=true">Cargando…</iframe>
+            <iframe class="iframe-container" src="https://docs.google.com/forms/d/e/1FAIpQLSe5-5qgAJYgzoxBjyw4U09mtxBUR9OpYx5CPqKJW5klT5Jk0w/viewform?usp=header">Cargando…</iframe>
         </div>
     </div>
 
@@ -127,39 +194,54 @@
     </a>
 
     <footer>
-    <div class="footer-linea-superior">
-        <img src="img/logo.png" alt="Logo Juntos a la Par" class="logo-img-footer">
-        <span>© 2026 Escuela de Educación Especial Juntos a la Par. Todos los derechos reservados.</span>
-    </div>
-    
-    <div class="footer-creditos">
-        <a href="https://www.somosnomade.com.ar" target="_blank">Creado por Nómade</a>
-    </div>
-</footer>
+        <div class="footer-linea-superior">
+            <img src="img/logo.png" alt="Logo Juntos a la Par" class="logo-img-footer">
+            <span>© 2026 Escuela de Educación Especial Juntos a la Par. Todos los derechos reservados.</span>
+        </div>
+        
+        <div class="footer-creditos">
+            <a href="https://www.somosnomade.com.ar" target="_blank">Creado por Nómade</a>
+        </div>
+    </footer>
 
     <script>
+        // --- LÓGICA DE APERTURA AUTOMÁTICA ---
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fecha límite: Año 2026, Mes 7 (Agosto, porque Enero es 0), Día 3.
+            const fechaApertura = new Date(2026, 7, 3, 0, 0, 0); 
+            const hoy = new Date();
+            
+            const zonaAdmisiones = document.getElementById("zona-admisiones");
+            const cartel = document.getElementById("cartel-proximamente");
+
+            if (hoy < fechaApertura) {
+                // Si estamos antes del 3 de agosto, bloqueamos y mostramos cartel
+                zonaAdmisiones.classList.add("estado-bloqueado");
+                cartel.style.display = "block";
+            } else {
+                // A partir del 3 de agosto, quitamos bloqueo y cartel
+                zonaAdmisiones.classList.remove("estado-bloqueado");
+                cartel.style.display = "none";
+            }
+        });
+
+        // --- SCRIPTS DE MODALES Y MENÚ ---
         function abrirModal(id) { document.getElementById(id).style.display = 'flex'; }
         function cerrarModal(id) { document.getElementById(id).style.display = 'none'; }
-        // Cerrar si se hace click afuera
+        
         window.onclick = function(event) {
             if (event.target.classList.contains('modal-overlay')) {
                 event.target.style.display = "none";
             }
         }
+        
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuLista = document.getElementById('menu-lista');
+
+        menuToggle.addEventListener('click', () => {
+            menuLista.classList.toggle('activo');
+        });
     </script>
-    <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const menuLista = document.getElementById('menu-lista');
 
-    menuToggle.addEventListener('click', () => {
-        menuLista.classList.toggle('activo');
-    });
-</script>
-
-</body> </html>
 </body>
-
 </html>
-
-
-
